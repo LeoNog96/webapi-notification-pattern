@@ -20,13 +20,13 @@ namespace NotificationPattern.Data.Repositories
 
         public abstract Task<IEnumerable<T>> GetAll();
 
-        public abstract Task<T> Get(object id);
+        public abstract Task<T> Get(long id);
 
         public abstract Task<T> Save(T entity);
 
         public abstract Task<IEnumerable<T>> SaveRange(IEnumerable<T> entity);
 
-        public abstract Task Update(T entity, object id);
+        public abstract Task Update(T entity);
 
         public abstract Task UpdateRange(IEnumerable<T> entity);
 

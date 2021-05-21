@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using NotificationPattern.WebApi.Configures.Context;
+using NotificationPattern.WebApi.Configures.Mapper;
 
 namespace NotificationPattern.WebApi
 {
@@ -44,6 +46,8 @@ namespace NotificationPattern.WebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NotificationPattern.WebApi v1"));
             }
 
+            MapperConfigure.Configure();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -54,6 +58,8 @@ namespace NotificationPattern.WebApi
             {
                 endpoints.MapControllers();
             });
+
+            ContextConfigure.Configure(app);
         }
     }
 }

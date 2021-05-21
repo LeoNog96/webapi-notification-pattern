@@ -19,7 +19,7 @@ namespace NotificationPattern.Domain.Repositories
         /// </summary>
         /// <param name="id"> id do registro ser buscado </param>
         /// <returns> Retorna uma lista com todos os registros do banco</returns>
-        Task<T> Get(object id);
+        Task<T> Get(long id);
 
         /// <summary>
         /// Persite uma entidade no banco
@@ -40,7 +40,7 @@ namespace NotificationPattern.Domain.Repositories
         /// </summary>
         /// <param name="entity">Entidade atualizada</param>
         /// <param name="id">Id da entidade a ser atualizada</param>
-        Task Update(T entity, object id);
+        Task Update(T entity);
 
         /// <summary>
         /// Atualiza um range de registros no banco
