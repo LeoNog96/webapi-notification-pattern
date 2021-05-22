@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NotificationPattern.Application.Models.EntityNotification.Get.Query
+namespace NotificationPattern.Application.EntityNotification.Get.Query
 {
-    public class EntityNotificationQuery : IRequest<EntityNotificationQueryResult>
+    public class GetEntityNotificationQuery : IRequest<GetEntityNotificationQueryResult>
     {
         public long Id { get; }
 
-        public EntityNotificationQuery(long id)
+        public GetEntityNotificationQuery(long id)
         {
             Id = id;
         }

@@ -11,10 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\EntityNotification\GetAll\" />
-    <Folder Include="Models\EntityNotification\Delete\" />
-    <Folder Include="Models\EntityNotification\Update\" />
-    <Folder Include="Models\EntityNotification\Save\" />
+    <Folder Include="EntityNotification\GetAll\" />
+    <Folder Include="EntityNotification\Delete\" />
+    <Folder Include="EntityNotification\Update\" />
   </ItemGroup>
 
   <ItemGroup>

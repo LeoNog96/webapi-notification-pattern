@@ -10,20 +10,20 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace NotificationPattern.Application.Models.EntityNotification.Get.Query
+namespace NotificationPattern.Application.EntityNotification.Get.Query
 {
-    public class EntityNotificationQueryHandler : IRequestHandler<EntityNotificationQuery, EntityNotificationQueryResult>
+    public class GetEntityNotificationQueryHandler : IRequestHandler<GetEntityNotificationQuery, GetEntityNotificationQueryResult>
     {
         private readonly IEntityNotificationRepository _entityNotificationRepository;
         private readonly NotificationContext _notificationContext;
 
-        public EntityNotificationQueryHandler(IEntityNotificationRepository entityNotificationRepository, NotificationContext notificationContext)
+        public GetEntityNotificationQueryHandler(IEntityNotificationRepository entityNotificationRepository, NotificationContext notificationContext)
         {
             _entityNotificationRepository = entityNotificationRepository;
             _notificationContext = notificationContext;
         }
 
-        public async Task<EntityNotificationQueryResult> Handle(EntityNotificationQuery request, CancellationToken cancellationToken)
+        public async Task<GetEntityNotificationQueryResult> Handle(GetEntityNotificationQuery request, CancellationToken cancellationToken)
         {
             var entity = await _entityNotificationRepository.Get(request.Id);
             
@@ -35,7 +35,7 @@ namespace NotificationPattern.Application.Models.EntityNotification.Get.Query
                 return null;
             }
 
-            return entity.Adapt<EntityNotificationQueryResult>();
+            return entity.Adapt<GetEntityNotificationQueryResult>();
         }
     }
 }

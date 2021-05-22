@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NotificationPattern.Application.Models.EntityNotification.Get.Query;
+using NotificationPattern.Application.EntityNotification.Get.Query;
+using NotificationPattern.Application.EntityNotification.Save.Query;
 
 namespace NotificationPattern.WebApi.Controllers.V1
 {
@@ -23,10 +24,19 @@ namespace NotificationPattern.WebApi.Controllers.V1
         }
 
         [HttpGet("{id:long}", Name = "GetEntityNotification")]
-        [ProducesResponseType(typeof(EntityNotificationQueryResult), StatusCodes.Status200OK)]
-        public async Task<ActionResult<EntityNotificationQueryResult>> GetEntityNotification(long id)
+        [ProducesResponseType(typeof(GetEntityNotificationQueryResult), StatusCodes.Status200OK)]
+        public async Task<ActionResult<GetEntityNotificationQueryResult>> GetEntityNotification(long id)
         {
-            var entityNotification = await _mediator.Send(new EntityNotificationQuery(id));
+            var entityNotification = await _mediator.Send(new GetEntityNotificationQuery(id));
+
+            return entityNotification;
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(SaveEntityNotificationQueryResult), StatusCodes.Status200OK)]
+        public async Task<ActionResult<SaveEntityNotificationQueryResult>> Save(SaveEntityNotificationQuery request)
+        {
+            var entityNotification = await _mediator.Send(request);
 
             return entityNotification;
         }
