@@ -1,4 +1,5 @@
 ﻿using Mapster;
+using NotificationPattern.Application.Models.EntityNotification.Get.Query;
 using NotificationPattern.Data.Entities;
 using NotificationPattern.Domain.Model;
 using System;
@@ -14,6 +15,9 @@ namespace NotificationPattern.WebApi.Configures.Mapper
         {
             TypeAdapterConfig<EntityNotificationEntity, EntityNotification>.NewConfig();
             TypeAdapterConfig<EntityNotification, EntityNotificationEntity>.NewConfig();
+
+            TypeAdapterConfig<EntityNotification, EntityNotificationQueryResult>.NewConfig();
+            //TypeAdapterConfig<EntityNotificationRequest, EntityNotification>.NewConfig();
         }
     }
 }

@@ -35,40 +35,74 @@ namespace NotificationPattern.Data.Repositories
 
         public async override Task<EntityNotification> Get(long id)
         {
-            var entity = await _db.EntityNotifications.FindAsync(id);
+            try
+            {
+                var entity = await _db.EntityNotifications.FindAsync(id);
 
-            _db.Entry(entity).State = EntityState.Detached;
+                _db.Entry(entity).State = EntityState.Detached;
 
-            return entity.Adapt<EntityNotification>();
+                return entity.Adapt<EntityNotification>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
-        public async override Task<IEnumerable<EntityNotification>> GetAll()
+        public async override Task<IEnumerable<EntityNotification>> GetAll(int page, int qtd)
         {
-            var entities = await _db.EntityNotifications.ToListAsync();
+            try
+            {
+                var entities = await _db.EntityNotifications
+                                        .OrderBy(x => x.Id)
+                                        .Skip(qtd * (page - 1))
+                                        .Take(qtd)
+                                        .AsNoTracking()
+                                        .ToListAsync();
 
-            return entities.Adapt<IEnumerable<EntityNotification>>();
+                return entities.Adapt<IEnumerable<EntityNotification>>();
+            }
+            catch(Exception)
+            {
+                return null;
+            }            
         }
 
         public async override Task<EntityNotification> Save(EntityNotification entity)
         {
-            var newEntity = entity.Adapt<EntityNotificationEntity>();
-            
-            _db.EntityNotifications.Add(newEntity);
+            try
+            {
+                var newEntity = entity.Adapt<EntityNotificationEntity>();
 
-            await _db.SaveChangesAsync();
+                _db.EntityNotifications.Add(newEntity);
 
-            return newEntity.Adapt<EntityNotification>();
+                await _db.SaveChangesAsync();
+
+                return newEntity.Adapt<EntityNotification>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public async override Task<IEnumerable<EntityNotification>> SaveRange(IEnumerable<EntityNotification> entity)
         {
-            var newEntities = entity.Adapt<IEnumerable<EntityNotificationEntity>>();
+            try
+            {
+                var newEntities = entity.Adapt<IEnumerable<EntityNotificationEntity>>();
 
-            _db.EntityNotifications.AddRange(newEntities);
+                _db.EntityNotifications.AddRange(newEntities);
 
-            await _db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
 
-            return newEntities.Adapt<IEnumerable<EntityNotification>>();
+                return newEntities.Adapt<IEnumerable<EntityNotification>>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public async override Task Update(EntityNotification entity)

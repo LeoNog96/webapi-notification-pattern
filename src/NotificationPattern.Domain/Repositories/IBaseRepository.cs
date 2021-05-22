@@ -12,7 +12,7 @@ namespace NotificationPattern.Domain.Repositories
         /// Lista todos os registro do banco
         /// </summary>
         /// <returns> Retorna uma lista com todos os registros do banco</returns>
-        Task<IEnumerable<T>> GetAll();
+        Task<IEnumerable<T>> GetAll(int page, int qtd);
 
         /// <summary>
         /// Busca determinado registro no banco

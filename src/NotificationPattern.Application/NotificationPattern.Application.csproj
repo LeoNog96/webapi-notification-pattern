@@ -5,7 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.1.0" />
     <PackageReference Include="Mapster" Version="7.2.0" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\EntityNotification\GetAll\" />
+    <Folder Include="Models\EntityNotification\Delete\" />
+    <Folder Include="Models\EntityNotification\Update\" />
+    <Folder Include="Models\EntityNotification\Save\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NotificationPattern.Domain\NotificationPattern.Domain.csproj" />
   </ItemGroup>
 
 </Project>

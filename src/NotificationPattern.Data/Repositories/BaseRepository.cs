@@ -18,7 +18,7 @@ namespace NotificationPattern.Data.Repositories
             _db = db;
         }
 
-        public abstract Task<IEnumerable<T>> GetAll();
+        public abstract Task<IEnumerable<T>> GetAll(int page, int qtd);
 
         public abstract Task<T> Get(long id);
 
