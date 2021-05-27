@@ -14,7 +14,7 @@ namespace NotificationPattern.Data.Repositories
 {
     public class EntityNotificationRepository : BaseRepository<EntityNotification>, IEntityNotificationRepository
     {
-        
+
         public EntityNotificationRepository(NotificationPatternContext db) : base(db) { }
 
         public async override Task Delete(long id)
@@ -24,7 +24,7 @@ namespace NotificationPattern.Data.Repositories
             _db.Entry(entity).State = EntityState.Detached;
 
             _db.EntityNotifications.Remove(entity);
-            
+
             await _db.SaveChangesAsync();
         }
 
@@ -62,10 +62,10 @@ namespace NotificationPattern.Data.Repositories
 
                 return entities.Adapt<IEnumerable<EntityNotification>>();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return null;
-            }            
+            }
         }
 
         public async override Task<EntityNotification> Save(EntityNotification entity)
@@ -105,13 +105,22 @@ namespace NotificationPattern.Data.Repositories
             }
         }
 
-        public async override Task Update(EntityNotification entity)
+        public async override Task<EntityNotification> Update(EntityNotification entity)
         {
-            var newEntity = entity.Adapt<EntityNotificationEntity>();
+            try
+            {
+                var newEntity = entity.Adapt<EntityNotificationEntity>();
 
-            _db.EntityNotifications.Update(newEntity);
+                _db.EntityNotifications.Update(newEntity);
 
-            await _db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
+
+                return newEntity.Adapt<EntityNotification>();
+            }
+            catch (Exception)
+            {
+                return null;
+            } 
         }
 
         public async override Task UpdateRange(IEnumerable<EntityNotification> entity)

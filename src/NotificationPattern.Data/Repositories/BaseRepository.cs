@@ -26,7 +26,7 @@ namespace NotificationPattern.Data.Repositories
 
         public abstract Task<IEnumerable<T>> SaveRange(IEnumerable<T> entity);
 
-        public abstract Task Update(T entity);
+        public abstract Task<T> Update(T entity);
 
         public abstract Task UpdateRange(IEnumerable<T> entity);
 

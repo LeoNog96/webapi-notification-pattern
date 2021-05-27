@@ -40,7 +40,7 @@ namespace NotificationPattern.Domain.Repositories
         /// </summary>
         /// <param name="entity">Entidade atualizada</param>
         /// <param name="id">Id da entidade a ser atualizada</param>
-        Task Update(T entity);
+        Task<T> Update(T entity);
 
         /// <summary>
         /// Atualiza um range de registros no banco

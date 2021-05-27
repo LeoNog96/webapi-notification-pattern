@@ -13,7 +13,6 @@
   <ItemGroup>
     <Folder Include="EntityNotification\GetAll\" />
     <Folder Include="EntityNotification\Delete\" />
-    <Folder Include="EntityNotification\Update\" />
   </ItemGroup>
 
   <ItemGroup>
